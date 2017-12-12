@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin'], function () {
+    Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+
+    // Categories
+    Route::get('/categories', 'CategoriesController@index')->name('admin.categories.index');
+    Route::post('/categories', 'CategoriesController@store')->name('admin.categories.store');
+    Route::get('/categories/create', 'CategoriesController@create')->name('admin.categories.create');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
