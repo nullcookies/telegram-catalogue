@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin'], function () {
     Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 
@@ -24,6 +20,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
     Route::get('/categories/create', 'CategoriesController@create')->name('admin.categories.create');
 });
 
+Route::group(['namespace' => 'Frontend'], function () {
+    Route::get('/', 'IndexController@index')->name('frontend.index');
+});
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
