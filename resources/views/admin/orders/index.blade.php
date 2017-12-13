@@ -25,7 +25,7 @@
                             <td>{{$order->description}}</td>
                             <td>{{$order->comment}}</td>
                             <td>
-                                <a href="{{route('admin.orders.approve')}}"></a>
+                                <a href="{{route('admin.orders.approve', $order->id)}}"></a>
 
                             </td>
                         </tr>

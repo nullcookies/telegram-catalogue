@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Categories;
 use App\Models\Orders;
+use App\Models\TelegramItems;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class IndexController extends Controller
 
     public function index ()
     {
-        return view('frontend.index');
+        $items = TelegramItems::where('status', 1)->get();
+
+        return view('frontend.index', compact('items'));
     }
 
     public function addChanel ()
