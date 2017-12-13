@@ -22,6 +22,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
 
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'IndexController@index')->name('frontend.index');
+    Route::get('/add-chanel', 'IndexController@addChanel')->name('frontend.add-chanel');
+    Route::post('/add-chanel', 'IndexController@chanelStore')->name('frontend.store-chanel');
 });
 
 Auth::routes();

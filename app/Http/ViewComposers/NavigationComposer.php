@@ -2,7 +2,6 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Models\Categories;
 use App\Models\CategoryTypes;
 use Illuminate\View\View;
 

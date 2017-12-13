@@ -9,5 +9,7 @@
         @include('frontend.partials._navigation')
 
         @yield('content')
+
+        @include('frontend.partials._footer')
     </body>
 </html>
