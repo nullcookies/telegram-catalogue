@@ -18,6 +18,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
     Route::get('/categories', 'CategoriesController@index')->name('admin.categories.index');
     Route::post('/categories', 'CategoriesController@store')->name('admin.categories.store');
     Route::get('/categories/create', 'CategoriesController@create')->name('admin.categories.create');
+
+    // Orders
+    Route::get('/orders', 'OrdersController@index')->name('admin.orders.index');
+    Route::get('/orders/{id}', 'OrdersController@approve')->name('admin.orders.approve');
 });
 
 Route::group(['namespace' => 'Frontend'], function () {
