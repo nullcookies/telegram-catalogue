@@ -50,6 +50,7 @@
                         <label for="url">url</label>
                         <input type="text" class="form-control" value="{{$order->link}}" name="url">
                     </div>
+                    <input type="hidden" value="{{$order->id}}" name="order">
                     <div class="form-group">
                         <label for="description">Описание</label>
                         <textarea name="description" class="form-control" rows="5">{{$info['description']}}</textarea>

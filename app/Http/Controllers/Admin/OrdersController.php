@@ -61,6 +61,9 @@ class OrdersController extends Controller
         $item->status = 1;
 
         if ($item->save()) {
+            // Update Order
+            Orders::where('id', $request->id)->update(['status' => 1]);
+
             return redirect()->route('admin.channels.index');
         }
 
