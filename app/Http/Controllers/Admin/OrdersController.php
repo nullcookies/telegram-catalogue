@@ -53,9 +53,18 @@ class OrdersController extends Controller
 
     public function store (Request $request)
     {
-        dd($request->all());
-
         $item = new TelegramItems;
+        $item->category_id = $request->category;
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->url = $request->url;
+        $item->status = 1;
+
+        if ($item->save()) {
+            return redirect()->route('admin.channels.index');
+        }
+
+        return redirect()->back();
     }
 
     public function makeImage ($photo)

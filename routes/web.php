@@ -23,6 +23,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
     Route::get('/orders', 'OrdersController@index')->name('admin.orders.index');
     Route::get('/orders/{id}/edit', 'OrdersController@approve')->name('admin.orders.approve');
     Route::post('/orders', 'OrdersController@store')->name('admin.orders.store');
+
+    // Channels
+    Route::get('/channels', 'ChannelsController@index')->name('admin.channels.index');
 });
 
 Route::group(['namespace' => 'Frontend'], function () {

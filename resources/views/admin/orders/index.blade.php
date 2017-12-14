@@ -18,14 +18,14 @@
                     </thead>
                     <tbody>
                     @foreach($orders as $order)
-                        <tr>
+                        <tr class="{{$order->status == 1 ? 'table-success' : ''}}">
                             <td>{{$order->id}}</td>
                             <td><a href="{{$order->link}}" target="_blank">{{$order->link}}</a></td>
                             <td>{{$order->category->title}}</td>
                             <td>{{$order->description}}</td>
                             <td>{{$order->comment}}</td>
                             <td>
-                                <a href="{{route('admin.orders.approve', $order->id)}}"></a>
+                                <a href="{{route('admin.orders.approve', $order->id)}}">Approve</a>
 
                             </td>
                         </tr>

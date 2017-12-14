@@ -23,13 +23,13 @@
 
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Заявки</a>
+                    <a class="nav-link" href="{{route('admin.orders.index')}}">Заявки</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('admin.categories.index')}}">Категории</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Каналы</a>
+                    <a class="nav-link" href="{{route('admin.channels.index')}}">Каналы</a>
                 </li>
             </ul>
         </nav>

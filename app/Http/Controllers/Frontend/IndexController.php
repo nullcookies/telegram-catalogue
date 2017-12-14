@@ -28,8 +28,6 @@ class IndexController extends Controller
 
     public function chanelStore (Request $request)
     {
-        //dd(get_class_methods($request));
-        //dd($request->getClientIp());
 
         $this->validate($request, [
             'link' => 'required|max:30|unique:orders',
