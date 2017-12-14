@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TelegramItems extends Model
 {
+    use Sluggable;
+
     protected $appends = ['thumbnail'];
 
     public function category ()
@@ -23,5 +25,14 @@ class TelegramItems extends Model
         $items = explode('/', $this->url);
 
         return $items[3];
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }
