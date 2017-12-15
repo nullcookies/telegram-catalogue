@@ -26,10 +26,14 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control">
+                    <div class="invalid-feedback">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Пароль</label>
                     <input type="password" name="password" id="password" class="form-control">
+                    <div class="invalid-feedback">
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-outline-primary btn-block">Войти</button>
                 <p></p>
@@ -41,16 +45,22 @@
                     <h1>Регистрация</h1>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control">
+                    <label for="email-register">Email</label>
+                    <input type="email" name="email-register" id="email-register" class="form-control">
+                    <div class="invalid-feedback">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="password">Пароль</label>
-                    <input type="password" name="password" id="password" class="form-control">
+                    <label for="password-register">Пароль</label>
+                    <input type="password" name="password-register" id="password-register" class="form-control">
+                    <div class="invalid-feedback">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="password">Подтверждение пароля</label>
-                    <input type="password" name="password" id="password" class="form-control">
+                    <label for="password-confirmation">Подтверждение пароля</label>
+                    <input type="password" name="password-confirmation" id="password-confirmation" class="form-control">
+                    <div class="invalid-feedback">
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-outline-primary btn-block">Регистрация</button>
                 <p></p>
@@ -79,6 +89,74 @@
                 e.preventDefault();
                 $('#login-form').toggle();
                 $('#register-form').toggle();
+            });
+
+            // Auth form send
+            $(document).on('submit', '#login-form', function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/login',
+                    method: 'POST',
+                    data: {
+                        'email': $('#email').val(),
+                        'password': $('#password').val(),
+                        '_token': '{{csrf_token()}}'
+                    },
+                    success: function (response) {
+                        if (response.reload == true) {
+                            location.reload();
+                        }
+                    },
+                    error: function (response, xhr) {
+                        if (xhr == 'error') {
+                            if (response.responseJSON.errors.email != null) {
+                                $('#email').addClass('is-invalid');
+                                $('#email').siblings('.invalid-feedback').html(response.responseJSON.errors.email[0]);
+                            }
+
+                            if (response.responseJSON.errors.password != null) {
+                                $('#password').addClass('is-invalid');
+                                $('#password').siblings('.invalid-feedback').html(response.responseJSON.errors.password[0]);
+                            }
+                        }
+                    }
+                });
+            });
+
+
+            // Register form send
+            $(document).on('submit', '#register-form', function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/register',
+                    method: 'POST',
+                    data: {
+                        'email': $('#email-register').val(),
+                        'password': $('#password-register').val(),
+                        'password_confirmation': $('#password-confirmation').val(),
+                        '_token': '{{csrf_token()}}'
+                    },
+                    success: function (response) {
+                        if (response.reload == true) {
+                            location.reload();
+                        }
+                    },
+                    error: function (response, xhr) {
+                        if (xhr == 'error') {
+                            if (response.responseJSON.errors.email != null) {
+                                $('#email-register').addClass('is-invalid');
+                                $('#email-register').siblings('.invalid-feedback').html(response.responseJSON.errors.email[0]);
+                            }
+
+                            if (response.responseJSON.errors.password != null) {
+                                $('#password-register').addClass('is-invalid');
+                                $('#password-register').siblings('.invalid-feedback').html(response.responseJSON.errors.password[0]);
+                            }
+                        }
+                    }
+                });
             });
         </script>
     @yield('js')

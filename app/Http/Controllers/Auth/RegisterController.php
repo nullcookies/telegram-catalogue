@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -48,9 +49,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+        ],
+        [
+            'email.required' => 'Email обязательно к заполнению.',
+            'email.email' => 'Не верный формат Email.',
+            'email.max' => 'Очень длинный Email.',
+            'email.unique' => 'Пользователь с таким Email уже зарегистрирован.',
+            'password.required' => 'Нужно указать пароль.',
+            'password.min' => 'Минимальная длинна пароля - 6 символов.',
+            'password.confirmed' => 'Пароли не совпадают.'
         ]);
     }
 
@@ -63,9 +72,36 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        //print_r($request->all());die;
+        $data = $request->only('email', 'password');
+
+        $this->validate($request,[
+        'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ],
+        [
+            'email.required' => 'Email обязательно к заполнению.',
+            'email.email' => 'Не верный формат Email.',
+            'email.max' => 'Очень длинный Email.',
+            'email.unique' => 'Пользователь с таким Email уже зарегистрирован.',
+            'password.required' => 'Нужно указать пароль.',
+            'password.min' => 'Минимальная длинна пароля - 6 символов.',
+            'password.confirmed' => 'Пароли не совпадают.'
+        ]);
+
+        $user = $this->create($data);
+
+        if ($user != null) {
+            return response()->json(['success' => true, 'reload' => true]);
+        }
+
+        return response()->json(['success' => false]);
     }
 }

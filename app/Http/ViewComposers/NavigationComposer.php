@@ -9,8 +9,6 @@ class NavigationComposer
 {
     public function compose (View $view)
     {
-        $catTypes = CategoryTypes::all();
 
-        $view->with('catTypes', $catTypes);
     }
 }
