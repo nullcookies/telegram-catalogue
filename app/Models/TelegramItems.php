@@ -9,7 +9,7 @@ class TelegramItems extends Model
 {
     use Sluggable;
 
-    protected $appends = ['thumbnail'];
+    protected $appends = ['thumbnail', 'user_name'];
 
     public function category ()
     {
@@ -19,6 +19,16 @@ class TelegramItems extends Model
     public function getThumbnailAttribute ()
     {
         return 'images/telegram/'.$this->imagesFolder().'/thumb.jpg';
+    }
+
+    public function getAvatarAttribute ()
+    {
+        return 'images/telegram/'.$this->imagesFolder().'/normal.jpg';
+    }
+
+    public function getUserNameAttribute ()
+    {
+        return '@'.$this->imagesFolder();
     }
 
     public function imagesFolder ()

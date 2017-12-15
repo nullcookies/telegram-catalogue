@@ -30,8 +30,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
 
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'IndexController@index')->name('frontend.index');
+
+    // Channels
+    Route::get('/channels', 'ChannelsController@index')->name('frontend.channels');
+    Route::get('/channels/{slug}', 'ChannelsController@view')->name('frontend.channel');
     Route::get('/add-chanel', 'IndexController@addChanel')->name('frontend.add-chanel');
     Route::post('/add-chanel', 'IndexController@chanelStore')->name('frontend.store-chanel');
+
+    // Feedback
+    Route::get('/feedback', 'FeedbackController@index')->name('frontend.feedback');
+    Route::post('/feedback', 'FeedbackController@store')->name('frontend.feedback.post');
 });
 
 Auth::routes();

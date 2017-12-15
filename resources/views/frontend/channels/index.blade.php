@@ -1,44 +1,30 @@
 @extends('frontend.layouts.layout')
 
 @section('content')
-<section id="index-nav">
+<section id="search">
     <div class="container">
-        <div class="container">
-            <br>
-            <div class="row">
-                <div class="col-3">
-                    <a href="#" class="categories-button">Категории</a>
-                </div>
-                <div class="col-6">
-                    <ul class="index-filters">
-                        <li><a href="#">Топ</a></li>
-                        <li><a href="#">за неделю</a></li>
-                        <li><a href="#">Новые</a></li>
-                    </ul>
-                </div>
-                <div class="col-3">
-                    <form action="">
-                        <div class="input-search">
-                            <input type="search" placeholder="Поиск канала">
-                        </div>
-
-                    </form>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h5>Быстрый поиск каналов</h5>
+                <form action="">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="Попробуйте ввести название канала">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
-
 <section class="chanels">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h4 class="main-header-text">Лучшие каналы</h4>
+                <h2>Каналы телеграмм</h2>
             </div>
         </div>
 
         <div class="row">
-            @foreach($items as $item)
+            @foreach($channels as $item)
                 <div class="col-4">
                     <div class="chanel_item">
                         <div class="chanel_panel">
@@ -65,8 +51,5 @@
         </div>
     </div>
 </section>
-@endsection
-
-@section('js')
 
 @endsection

@@ -1,11 +1,15 @@
 <nav class="main-navigation">
     <div class="container">
-        <ul style="float:left">
-            @foreach($catTypes as $item)
-                <li><a href="/">{{$item->title}}</a></li>
-            @endforeach
-
+        <ul style="float:right">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/channels">Каналы</a></li>
+            @if (Auth::user() != null)
+                <li><a href="{{route('frontend.add-chanel')}}">Добавить канал</a></li>
+            @else
+                <li><a href="#" class="login">Добавить канал</a></li>
+            @endif
+            <li><a href="{{route('frontend.add-chanel')}}" class="login">Вход</a></li>
         </ul>
-        <a href="{{route('frontend.add-chanel')}}" class="btn btn-success" style="float:right;margin-top: 6px;">Добавить канал</a>
+
     </div>
 </nav>

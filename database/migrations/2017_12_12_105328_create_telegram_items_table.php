@@ -15,9 +15,11 @@ class CreateTelegramItemsTable extends Migration
     {
         Schema::create('telegram_items', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->integer('category_id');
-            $table->string('avatar')->nullable();
+            $table->integer('type')->default(1);
             $table->string('name');
+            $table->string('slug')->nullable()->index();
             $table->text('description', 1000)->nullable();
             $table->string('url');
             $table->integer('views')->default(0);

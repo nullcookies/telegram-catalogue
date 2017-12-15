@@ -15,7 +15,6 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_type_id');
             $table->string('title');
             $table->boolean('position')->default(0);
             $table->boolean('status')->default(0);
