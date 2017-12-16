@@ -11,6 +11,7 @@
 |
 */
 
+// Admin routes
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin'], function () {
     Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 
@@ -28,6 +29,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
     Route::get('/channels', 'ChannelsController@index')->name('admin.channels.index');
 });
 
+
+// User an Auth user routes
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'IndexController@index')->name('frontend.index');
 
@@ -40,6 +43,12 @@ Route::group(['namespace' => 'Frontend'], function () {
     // Feedback
     Route::get('/feedback', 'FeedbackController@index')->name('frontend.feedback');
     Route::post('/feedback', 'FeedbackController@store')->name('frontend.feedback.post');
+
+    Route::group(['middleware' => 'auth', 'prefix' => 'cabinet'], function () {
+        Route::get('/', 'CabinetController@index')->name('frontend.cabinet');
+        Route::get('/add', 'CabinetController@add')->name('frontend.cabinet.add');
+        Route::post('/add', 'CabinetController@add')->name('frontend.add.post');
+    });
 });
 
 Auth::routes();

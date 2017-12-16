@@ -26,6 +26,13 @@ footer {
     padding: 30px;
 }
 
+#cabinet {
+    margin-top: 30px;
+}
+
+.top-30 {
+    margin-top: 30px;
+}
 
 .main-navigation {
     min-height: 50px;

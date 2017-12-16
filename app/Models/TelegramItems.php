@@ -46,4 +46,30 @@ class TelegramItems extends Model
             ]
         ];
     }
+
+    public static function types()
+    {
+        return [
+            (object)[
+                'id' => 1,
+                'title' => 'Канал'
+            ],
+            (object)[
+                'id' => 2,
+                'title' => 'Бот'
+            ],
+            (object)[
+                'id' => 3,
+                'title' => 'Публичный чат'
+            ],
+            (object)[
+                'id' => 4,
+                'title' => 'Приватный чат'
+            ],
+            (object)[
+                'id' => 5,
+                'title' => 'Стикерпак'
+            ],
+        ];
+    }
 }

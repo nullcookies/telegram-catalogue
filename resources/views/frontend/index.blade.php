@@ -1,33 +1,6 @@
 @extends('frontend.layouts.layout')
 
 @section('content')
-<section id="index-nav">
-    <div class="container">
-        <div class="container">
-            <br>
-            <div class="row">
-                <div class="col-3">
-                    <a href="#" class="categories-button">Категории</a>
-                </div>
-                <div class="col-6">
-                    <ul class="index-filters">
-                        <li><a href="#">Топ</a></li>
-                        <li><a href="#">за неделю</a></li>
-                        <li><a href="#">Новые</a></li>
-                    </ul>
-                </div>
-                <div class="col-3">
-                    <form action="">
-                        <div class="input-search">
-                            <input type="search" placeholder="Поиск канала">
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="chanels">
     <div class="container">

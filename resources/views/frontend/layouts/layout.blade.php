@@ -15,6 +15,8 @@
               integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link href="{{asset('css/main.css')}}"  rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css" />
+
+        @yield('styles')
     </head>
     <body>
     <div id="login-modal" data-iziModal-group="grupo1">
