@@ -4,7 +4,7 @@
             <li><a href="/">Главная</a></li>
             <li><a href="/channels">Каналы</a></li>
             @if (Auth::user() != null)
-                <li><a href="{{route('frontend.add-chanel')}}">Добавить канал</a></li>
+                <li><a href="{{route('frontend.cabinet.add')}}">Добавить канал</a></li>
             @else
                 <li><a href="#" class="login">Добавить канал</a></li>
             @endif
@@ -14,8 +14,10 @@
                 <li><a href="{{route('frontend.cabinet')}}">Кабинет</a></li>
             @endif
 
-            @if (Auth::user()->access_level === 10)
-                <li><a href="{{route('admin.dashboard')}}">Админка</a></li>
+            @if (Auth::check())
+                @if (Auth::user()->access_level === 10)
+                    <li><a href="{{route('admin.dashboard')}}">Админка</a></li>
+                @endif
             @endif
         </ul>
 

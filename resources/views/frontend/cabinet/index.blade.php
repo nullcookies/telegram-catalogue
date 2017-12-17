@@ -13,6 +13,7 @@
                             <h5>Профиль</h5>
                             <hr>
                         </div>
+                        <div class="card-body">
                             <div class="row">
 
                                 <div class="col-4">

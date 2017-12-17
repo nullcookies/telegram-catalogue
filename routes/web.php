@@ -37,7 +37,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     // Channels
     Route::get('/channels', 'ChannelsController@index')->name('frontend.channels');
     Route::get('/channels/{slug}', 'ChannelsController@view')->name('frontend.channel');
-    Route::get('/add-chanel', 'IndexController@addChanel')->name('frontend.add-chanel');
     Route::post('/add-chanel', 'IndexController@chanelStore')->name('frontend.store-chanel');
 
     // Feedback
@@ -47,10 +46,12 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::group(['middleware' => 'auth', 'prefix' => 'cabinet'], function () {
         Route::get('/', 'CabinetController@index')->name('frontend.cabinet');
         Route::get('/add', 'CabinetController@add')->name('frontend.cabinet.add');
-        Route::post('/add', 'CabinetController@add')->name('frontend.add.post');
+        Route::post('/add', 'CabinetController@store')->name('frontend.add.post');
     });
 });
 
-Auth::routes();
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
+//Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

@@ -12,7 +12,6 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Название</th>
-                            <th scope="col">Тип</th>
                             <th scope="col">Управление</th>
                         </tr>
                     </thead>
@@ -21,7 +20,6 @@
                             <tr>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->title}}</td>
-                                <td>{{$category->type->title}}</td>
                                 <td></td>
                             </tr>
                         @endforeach

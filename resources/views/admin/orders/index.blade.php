@@ -9,6 +9,7 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Название</th>
                         <th scope="col">Ссылка</th>
                         <th scope="col">Категория</th>
                         <th scope="col">Краткое описание</th>
@@ -20,6 +21,7 @@
                     @foreach($orders as $order)
                         <tr class="{{$order->status == 1 ? 'table-success' : ''}}">
                             <td>{{$order->id}}</td>
+                            <td>{{$order->name}}</td>
                             <td><a href="{{$order->link}}" target="_blank">{{$order->link}}</a></td>
                             <td>{{$order->category->title}}</td>
                             <td>{{$order->description}}</td>

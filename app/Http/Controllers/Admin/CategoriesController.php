@@ -27,10 +27,6 @@ class CategoriesController extends Controller
         $category = new Categories;
         $category->title = $request->title;
 
-        if ($request->status) {
-            $category->status = $request->status;
-        }
-
         if ($category->save()) {
             return redirect()->route('admin.categories.index')
                 ->with('success', 'Категория успешно добавлена.');

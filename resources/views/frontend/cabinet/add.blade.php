@@ -19,6 +19,19 @@
                         </div>
                             <div class="row justify-content-center">
                                 <div class="col-8">
+
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
+
+
                                     <form action="{{route('frontend.add.post')}}" method="POST">
                                         {{csrf_field()}}
                                         <div class="form-group">
@@ -39,21 +52,32 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="name"><strong>Введите название</strong></label>
-                                            <input type="text" name="name" id="name" class="form-control" reqiured>
+                                            <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}">
+                                            @if ($errors->has('name'))
+                                                <p class="text-danger">{!! $errors->first('name') !!}</p>
+                                            @endif
                                             <small id="nameHelpBlock" class="form-text text-muted">
                                                 Вводите название идентичное названию в телеграме
                                             </small>
                                         </div>
                                         <div class="form-group">
                                             <label for="url"><strong>Ссылка</strong></label>
-                                            <input type="text" name="url" id="url" class="form-control" placeholder="https://t.me/name">
+                                            <input type="text" name="url" id="url" class="form-control" placeholder="https://t.me/name" value="{{old('url')}}">
+
+                                            @if ($errors->has('url'))
+                                                <p class="text-danger">{!! $errors->first('url') !!}</p>
+                                            @endif
+
                                             <small id="urlHelpBlock" class="form-text text-muted">
                                                 Ссылка для шеринга канала или имя бота
                                             </small>
                                         </div>
                                         <div class="form-group">
                                             <label for="description"><strong>Описание</strong></label>
-                                            <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{old('description')}}</textarea>
+                                            @if ($errors->has('description'))
+                                                <p class="text-danger">{!! $errors->first('description') !!}</p>
+                                            @endif
                                         </div>
                                         <small class="form-text text-muted">
                                             Все каналы, боты, чаты в telegram проходят ручную модерацию. Время проверки

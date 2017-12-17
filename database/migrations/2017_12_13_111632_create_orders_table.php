@@ -15,10 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->string('name');
             $table->string('link');
+            $table->integer('type');
             $table->integer('category_id');
             $table->text('description', 300)->nullable();
-            $table->text('comment', 1000)->nullable();
             $table->ipAddress('client_ip')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
