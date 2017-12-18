@@ -10,8 +10,17 @@
                 <div class="col-9">
                     <div class="card">
                         <div class="card-body">
-                            <h5>Профиль</h5>
-                            <hr>
+                            <div class="row justify-content-between">
+                                <div class="col-lg-4">
+                                    <h5>Профиль</h5>
+                                </div>
+                                <div class="col-lg-2">
+                                    <form action="{{route('logout')}}" method="POST">
+                                        {{csrf_field()}}
+                                        <button class="btn btn-outline-danger btn-block">Выход</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="row">

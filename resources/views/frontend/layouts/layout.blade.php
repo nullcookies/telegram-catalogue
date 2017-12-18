@@ -106,8 +106,8 @@
                         '_token': '{{csrf_token()}}'
                     },
                     success: function (response) {
-                        if (response.reload == true) {
-                            location.reload();
+                        if (response.success == true) {
+                            window.location.href = '/cabinet';
                         }
                     },
                     error: function (response, xhr) {
