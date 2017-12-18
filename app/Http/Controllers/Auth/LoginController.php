@@ -51,6 +51,6 @@ class LoginController extends Controller
             return response()->json(['success' => true], 200);
         }
 
-        return response()->json(['success' => false, 'errors' => ['email' => ['Пользователь не найден']]], 422);
+        return response()->json(['success' => false, 'errors' => ['email' => ['Неправильный логин или пароль.']]], 422);
     }
 }
