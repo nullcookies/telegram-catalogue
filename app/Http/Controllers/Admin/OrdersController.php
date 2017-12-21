@@ -57,6 +57,7 @@ class OrdersController extends Controller
     public function store (Request $request)
     {
         $item = new TelegramItems;
+        $item->user_id = $request->user_id;
         $item->category_id = $request->category;
         $item->name = $request->name;
         $item->description = $request->description;

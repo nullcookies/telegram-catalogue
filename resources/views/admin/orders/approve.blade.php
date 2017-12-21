@@ -46,6 +46,7 @@
                         <label for="name">Имя паблика/канала/бота</label>
                         <input type="text" class="form-control" value="{{$info['title']}}" name="name">
                     </div>
+                    <input type="hidden" name="user_id" value="{{$order->user_id}}">
                     <div class="form-group">
                         <label for="url">url</label>
                         <input type="text" class="form-control" value="{{$order->link}}" name="url">
