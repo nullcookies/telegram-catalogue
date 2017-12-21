@@ -12,7 +12,7 @@
 */
 
 // Admin routes
-Route::group(['prefix' => 'admin', 'middleware' => 'auth,admin', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin'], 'namespace' => 'Admin'], function () {
     Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 
     // Categories
