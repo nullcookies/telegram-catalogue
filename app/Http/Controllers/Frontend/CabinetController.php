@@ -49,7 +49,7 @@ class CabinetController extends Controller
         $order->client_ip = $request->getClientIp();
 
         if ($order->save()) {
-            return redirect('frontend.cabinet.add')->with('success', 'Ваша заявка находится на рассмотрении. После успешной модерации вы получите уведомление на контактный email.');
+            return redirect()->route('frontend.cabinet.add')->with('success', 'Ваша заявка находится на рассмотрении. После успешной модерации вы получите уведомление на контактный email.');
         }
 
 
