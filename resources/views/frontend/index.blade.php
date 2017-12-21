@@ -22,7 +22,7 @@
                                     <a class="chanel_item_name" href="#">{{$item->name}}</a>
                                 </div>
                                 <div class="chanel_item_description">
-                                    {{str_limit($item->description, 100)}}
+                                    {{str_limit($item->description, 85)}}
                                 </div>
                             </div>
                         </div>
