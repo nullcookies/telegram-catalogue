@@ -29,8 +29,11 @@ class OrdersController extends Controller
     {
         try {
             $order = Orders::findOrFail($id);
-            $membersCount = Telegram::getUsersCount('@bodyfit_net');
-            $chatInfo = Telegram::getChat('@bodyfit_net');
+
+            $telegramChannel = $this->getChannelName($order->link);
+
+            $membersCount = Telegram::getUsersCount($telegramChannel);
+            $chatInfo = Telegram::getChat($telegramChannel);
 
             $this->_user_name = $chatInfo->username;
 
@@ -139,5 +142,12 @@ class OrdersController extends Controller
         }
 
         return false;
+    }
+
+    private function getChannelName ($url)
+    {
+        $items = explode('/', $url);
+
+        return '@'.$items[3];
     }
 }
