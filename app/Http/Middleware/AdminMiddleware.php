@@ -21,9 +21,9 @@ class AdminMiddleware
                 return $next($request);
             }
 
-            return redirect()->back();
+            abort(404);
         }
 
-        return redirect()->back();
+        abort(404);
     }
 }
