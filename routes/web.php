@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin'], 'namespace'
 
     // Channels
     Route::get('/channels', 'ChannelsController@index')->name('admin.channels.index');
+
+    Route::get('/data', 'DashboardController@getData');
 });
 
 

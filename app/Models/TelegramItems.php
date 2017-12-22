@@ -35,7 +35,10 @@ class TelegramItems extends Model
     {
         $items = explode('/', $this->url);
 
-        return $items[3];
+        if (count($items) > 2) {
+            return $items[3];
+        }
+        return '';
     }
 
     public function sluggable()
