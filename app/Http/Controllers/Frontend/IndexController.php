@@ -15,9 +15,10 @@ class IndexController extends Controller
 
     public function index ()
     {
-        $items = TelegramItems::where('status', 1)->get();
+        $channels = TelegramItems::where('status', 1)->inRandomOrder()->take(6);
+        $newChannels = TelegramItems::where('status', 1)->orderBy('id', 'ASC')->take(6);
 
-        return view('frontend.index', compact('items'));
+        return view('frontend.index', compact('channels', 'newChannels'));
     }
 
     public function addChanel ()
