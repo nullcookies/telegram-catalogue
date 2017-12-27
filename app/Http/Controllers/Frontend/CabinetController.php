@@ -7,12 +7,23 @@ use App\Models\Orders;
 use App\Models\TelegramItems;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CabinetController extends Controller
 {
     public function index ()
     {
-        return view('frontend.cabinet.index');
+        $orders = Orders::where([
+            ['user_id', Auth::user()->id],
+            ['status', 0]
+        ])->get();
+
+        $channels = TelegramItems::where([
+            ['user_id', Auth::user()->id],
+            ['status', 1]
+        ])->get();
+
+        return view('frontend.cabinet.index', compact('orders', 'channels'));
     }
 
     public function add ()
@@ -49,7 +60,7 @@ class CabinetController extends Controller
         $order->client_ip = $request->getClientIp();
 
         if ($order->save()) {
-            return redirect()->route('frontend.cabinet.add')->with('success', 'Ваша заявка находится на рассмотрении. После успешной модерации вы получите уведомление на контактный email.');
+            return redirect()->route('frontend.cabinet')->with('add-success', 'Ваша заявка находится на рассмотрении. После успешной модерации вы получите уведомление на контактный email.');
         }
 
 

@@ -10,6 +10,18 @@
                 <div class="col-9">
                     <div class="card">
                         <div class="card-body">
+                            @if (session('add-success'))
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{session('add-success')}}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="row justify-content-between">
                                 <div class="col-lg-4">
                                     <h5>Профиль</h5>
@@ -40,7 +52,28 @@
                                     </div>
                                 </div>
                                 <div class="col top-30">
-                                    <h5>Добавленые каналы:</h5>
+
+                                    @if (!$channels->isEmpty())
+                                        sjdfdsj
+                                    @endif
+
+                                    @if (!$orders->isEmpty())
+                                        <h4>Заявки на модерации</h4>
+                                        <table class="table">
+                                            <tbody>
+                                                @foreach($orders as $order)
+                                                    <tr>
+                                                        <td>{{$order->name}}</td>
+                                                        <td>Добавлена: {{$order->created_at}}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    @endif
+
+                                    <div class="alert alert-info" role="alert">
+                                        Вы еще не добавили ни одного канала. <a href="{{route('frontend.cabinet.add')}}" class="alert-link">Нажмите здесь</a> чтобы добавить канал в каталог.
+                                    </div>
                                 </div>
                             </div>
                         </div>
