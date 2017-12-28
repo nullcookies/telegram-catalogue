@@ -54,6 +54,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('/channel/{slug}', 'CabinetController@channel')->name('frontend.cabinet.channel');
 
         Route::get('/settings', 'CabinetController@settings')->name('frontend.cabinet.settings');
+        Route::post('/settings', 'CabinetController@settingsSave')->name('frontend.cabinet.settings.save');
     });
 });
 

@@ -94,7 +94,7 @@ class CabinetController extends Controller
 
     public function settings ()
     {
-
+        return view('frontend.cabinet.settings');
     }
 
     public function updateProfile (Request $request)
