@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Categories;
 use App\Models\Orders;
 use App\Models\TelegramItems;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -97,7 +97,32 @@ class CabinetController extends Controller
         return view('frontend.cabinet.settings');
     }
 
-    public function updateProfile (Request $request)
+    public function settingsSave (Request $request)
+    {
+
+        // Upload image
+        if ($request->has('avatar')) {
+            // TODO: Upload avatar for user
+        }
+
+        if ($request->telegram_account != null && $this->checkAccount($request->telegram_account)) {
+            User::where('id', \Auth::user()->id)->update(['telegram_account' => $request->telegram_account]);
+        }
+
+
+        return response()->json(['data' => $request->all()]);
+    }
+
+    private function checkAccount($account)
+    {
+        if ($account != \Auth::user()->telegram_account) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function uploadAvatar($image)
     {
 
     }

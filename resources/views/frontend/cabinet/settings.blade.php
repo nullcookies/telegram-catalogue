@@ -18,7 +18,8 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <form action="{{route('frontend.cabinet.settings.save')}}">
+                                    <form id="settingsForm" enctype="multipart/form-data">
+                                        {{csrf_field()}}
                                         <div class="form-group">
                                             <label for="avatar"><strong>Загрузить аватар</strong></label><br>
                                                 <img src="http://via.placeholder.com/350x350" id="avatarPreview" width="250px" />
@@ -27,9 +28,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="telegram_account"><strong>Ник в телеграмм</strong></label>
-                                            <input type="text" name="telegram_account" class="form-control">
+                                            <input type="text" name="telegram_account" class="form-control" value="{{\Auth::user()->telegram_account}}">
                                         </div>
-                                        <button class="btn btn-outline-success" id="saveButton">Сохранить</button>
+                                        <button class="btn btn-outline-success">Сохранить</button>
                                     </form>
                                 </div>
                             </div>
@@ -63,7 +64,23 @@
                 readImage(this);
             });
 
-            $('#saveButton').click();
+            $('#settingsForm').submit(function (e) {
+                e.preventDefault();
+
+                var data = new FormData(this);
+
+                $.ajax({
+                    url: '{{route("frontend.cabinet.settings.save")}}',
+                    data: data,
+                    method: 'POST',
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+            });
         });
     </script>
 @endsection

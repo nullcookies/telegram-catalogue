@@ -46,7 +46,7 @@
                                             <li class="list-group-item"><strong>Имя:</strong><div style="float:right;">{{Auth::user()->name != null ? Auth::user()->name : 'Не указано'}}</div></li>
                                             <li class="list-group-item"><strong>Email:</strong><div style="float:right;">{{Auth::user()->email}}</div></li>
                                             <li class="list-group-item"><strong>Дата регистрации:</strong> <div style="float:right;">{{Auth::user()->created_at}}</div></li>
-                                            <li class="list-group-item"><strong>Telegram аккаунт:</strong></li>
+                                            <li class="list-group-item"><strong>Telegram аккаунт:</strong> <div style="float:right;">{{Auth::user()->telegram_account}}</div></li>
 
                                         </ul>
                                     </div>
