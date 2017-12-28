@@ -50,6 +50,17 @@ class TelegramItems extends Model
         ];
     }
 
+    public function scopeByAuthUser ($query)
+    {
+        $userId = \Auth::user()->id;
+
+        if ($userId != null) {
+            return $query->where('user_id', $userId);
+        }
+
+        return null;
+    }
+
     public static function types()
     {
         return [

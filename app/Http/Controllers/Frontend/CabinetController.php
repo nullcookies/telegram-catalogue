@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Categories;
 use App\Models\Orders;
 use App\Models\TelegramItems;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -71,5 +72,33 @@ class CabinetController extends Controller
 
 
         return view('frontend.cabinet.add')->with('success', 'Ошибка при добавлении в каталог.');
+    }
+
+    public function channels ()
+    {
+        $channels = TelegramItems::byAuthUser()->orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('frontend.cabinet.channels', compact('channels'));
+    }
+
+    public function channel ($slug)
+    {
+        $channel = TelegramItems::whereSlug($slug)->first();
+
+        if ($channel != null) {
+            return view('frontend.cabinet.channel', compact('channel'));
+        }
+
+        return redirect()->route('frontend.cabinet.channels');
+    }
+
+    public function settings ()
+    {
+
+    }
+
+    public function updateProfile (Request $request)
+    {
+
     }
 }

@@ -39,7 +39,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     // Channels
     Route::get('/channels', 'ChannelsController@index')->name('frontend.channels');
     Route::get('/channels/{slug}', 'ChannelsController@view')->name('frontend.channel');
-    Route::post('/add-chanel', 'IndexController@chanelStore')->name('frontend.store-chanel');
+    //Route::post('/add-chanel', 'IndexController@chanelStore')->name('frontend.store-chanel');
 
     // Feedback
     Route::get('/feedback', 'FeedbackController@index')->name('frontend.feedback');
@@ -49,6 +49,11 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('/', 'CabinetController@index')->name('frontend.cabinet');
         Route::get('/add', 'CabinetController@add')->name('frontend.cabinet.add');
         Route::post('/add', 'CabinetController@store')->name('frontend.add.post');
+
+        Route::get('/channels', 'CabinetController@channels')->name('frontend.cabinet.channels');
+        Route::get('/channel/{slug}', 'CabinetController@channel')->name('frontend.cabinet.channel');
+
+        Route::get('/settings', 'CabinetController@settings')->name('frontend.cabinet.settings');
     });
 });
 

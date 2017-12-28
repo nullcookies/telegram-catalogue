@@ -67,16 +67,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($channels as $item)
-                                                <tr>
-                                                    <td><a href="">{{$item->name}}</a></td>
-                                                    <td><a href="{{$item->url}}" target="_blank">{{$item->url}}</a></td>
-                                                    <td>{{$item->views}}</td>
-                                                    <td>{{$item->forwards}}</td>
-                                                    <td>{{$item->status == 1 ? 'Активен' : 'Не активен'}}</td>
-                                                    <td>{{Carbon\Carbon::parse($item->created_at)->toDateString()}}</td>
-                                                </tr>
-                                            @endforeach
+                                                @foreach($channels as $item)
+                                                    <tr>
+                                                        <td><a href="">{{$item->name}}</a></td>
+                                                        <td><a href="{{$item->url}}" target="_blank">{{$item->url}}</a></td>
+                                                        <td>{{$item->views}}</td>
+                                                        <td>{{$item->forwards}}</td>
+                                                        <td>{{$item->status == 1 ? 'Активен' : 'Не активен'}}</td>
+                                                        <td>{{Carbon\Carbon::parse($item->created_at)->toDateString()}}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     @endif
