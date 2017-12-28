@@ -54,7 +54,31 @@
                                 <div class="col top-30">
 
                                     @if (!$channels->isEmpty())
-                                        sjdfdsj
+                                        <h4>Добавленные каналы</h4>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Имя</th>
+                                                    <th>Ссылка</th>
+                                                    <th>Просмотры</th>
+                                                    <th>Переходы</th>
+                                                    <th>Статус</th>
+                                                    <th>Дата добавления</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($channels as $item)
+                                                <tr>
+                                                    <td><a href="">{{$item->name}}</a></td>
+                                                    <td><a href="{{$item->url}}" target="_blank">{{$item->url}}</a></td>
+                                                    <td>{{$item->views}}</td>
+                                                    <td>{{$item->forwards}}</td>
+                                                    <td>{{$item->status == 1 ? 'Активен' : 'Не активен'}}</td>
+                                                    <td>{{Carbon\Carbon::parse($item->created_at)->toDateString()}}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     @endif
 
                                     @if (!$orders->isEmpty())

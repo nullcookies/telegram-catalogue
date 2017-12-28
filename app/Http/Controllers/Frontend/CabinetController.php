@@ -16,12 +16,18 @@ class CabinetController extends Controller
         $orders = Orders::where([
             ['user_id', Auth::user()->id],
             ['status', 0]
-        ])->get();
+        ])
+        ->orderBy('created_at', 'DESC')
+        ->limit(5)
+        ->get();
 
         $channels = TelegramItems::where([
             ['user_id', Auth::user()->id],
             ['status', 1]
-        ])->get();
+        ])
+        ->orderBy('created_at', 'DESC')
+        ->limit(5)
+        ->get();
 
         return view('frontend.cabinet.index', compact('orders', 'channels'));
     }
