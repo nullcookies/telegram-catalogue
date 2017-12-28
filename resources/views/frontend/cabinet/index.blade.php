@@ -71,9 +71,12 @@
                                         </table>
                                     @endif
 
-                                    <div class="alert alert-info" role="alert">
-                                        Вы еще не добавили ни одного канала. <a href="{{route('frontend.cabinet.add')}}" class="alert-link">Нажмите здесь</a> чтобы добавить канал в каталог.
-                                    </div>
+                                    @if ($channels->isEmpty() && $orders->isEmpty())
+                                        <div class="alert alert-info" role="alert">
+                                            Вы еще не добавили ни одного канала. <a href="{{route('frontend.cabinet.add')}}" class="alert-link">Нажмите здесь</a> чтобы добавить канал в каталог.
+                                        </div>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
