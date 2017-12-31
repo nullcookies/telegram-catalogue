@@ -266,3 +266,8 @@ footer {
 .footer-nav ul li a:hover {
     color: #2a88bd;
 }
+
+.top-channel-container {
+    padding: 15px;
+    border-bottom: solid 1px #e7e7e7;
+}

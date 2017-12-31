@@ -11,6 +11,6 @@ class TopThreeChannelsComposer
     {
         $channels = TelegramItems::top()->take(3)->get();
 
-        $view->with('channels', $channels);
+        $view->with('topChannels', $channels);
     }
 }

@@ -14,7 +14,27 @@
     <div class="card">
 
         <div class="card-body">
-            <h5>Cabinet</h5>
+            <h5>Популярные каналы</h5>
+            @foreach($topChannels as $item)
+                <div class="top-channel-container">
+                    <div class="top-channel-image">
+                        <img src="{{$item->avatar}}" alt="{{$item->description}}" width="100%">
+                    </div>
+                    <div class="top-channel-content">
+                        <div class="top-channel-header">
+                            <h5>{{$item->name}}</h5>
+                        </div>
+                        <div class="top-channel-stat row">
+                            <div class="top-channel-star col">
+
+                            </div>
+                            <div class="top-channel-button col">
+                                <a class="btn btn-outline-success btn-sm" href="{{$item->url}}" target="_blank">Подписаться</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
 
     </div>
