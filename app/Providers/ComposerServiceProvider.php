@@ -16,6 +16,9 @@ class ComposerServiceProvider extends ServiceProvider
         \View::composer(
             'frontend.layouts.layout', 'App\Http\ViewComposers\NavigationComposer'
         );
+        \View::composer(
+            'frontend.cabinet.*', 'App\Http\ViewComposers\TopThreeChannelsComposer'
+        );
     }
 
     /**
