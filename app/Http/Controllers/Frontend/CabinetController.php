@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+//use Intervention\Image\Image;
 
 class CabinetController extends Controller
 {
@@ -99,10 +100,15 @@ class CabinetController extends Controller
 
     public function settingsSave (Request $request)
     {
+        $error = false;
 
         // Upload image
         if ($request->has('avatar')) {
-            // TODO: Upload avatar for user
+            $uploadedAvatar = $this->uploadAvatar($request->avatar);
+            if ($uploadedAvatar) {
+                User::where('id', \Auth::user()->id)->update(['avatar' => $uploadedAvatar]);
+                $error = true;
+            }
         }
 
         if ($request->telegram_account != null && $this->checkAccount($request->telegram_account)) {
@@ -113,7 +119,7 @@ class CabinetController extends Controller
         return response()->json(['data' => $request->all()]);
     }
 
-    private function checkAccount($account)
+    private function checkAccount ($account)
     {
         if ($account != \Auth::user()->telegram_account) {
             return true;
@@ -122,8 +128,26 @@ class CabinetController extends Controller
         return false;
     }
 
-    private function uploadAvatar($image)
+    private function uploadAvatar ($image)
     {
+        $userAvatarFile = \Auth::user()->avatar;
 
+        if ($userAvatarFile != null) {
+            $this->removeFile($userAvatarFile);
+        }
+
+        $imageName = md5(uniqid()).'.jpg';
+
+        if (\Image::make($image)->fit(400)->save('images/avatars/'.$imageName)) {
+            return $imageName;
+        }
+
+        return false;
+
+    }
+
+    private function removeFile ($filename)
+    {
+        \File::delete('images/avatars/'.$filename);
     }
 }

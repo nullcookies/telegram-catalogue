@@ -22,7 +22,12 @@
                                         {{csrf_field()}}
                                         <div class="form-group">
                                             <label for="avatar"><strong>Загрузить аватар</strong></label><br>
+                                            @if (\Auth::user()->avatar)
+                                                <img src="{{asset('images/avatars/'.\Auth::user()->avatar)}}" id="avatarPreview" width="250px" />
+                                            @else
                                                 <img src="http://via.placeholder.com/350x350" id="avatarPreview" width="250px" />
+                                            @endif
+
                                             <p></p>
                                             <input type="file" name="avatar" id="avatar">
                                         </div>

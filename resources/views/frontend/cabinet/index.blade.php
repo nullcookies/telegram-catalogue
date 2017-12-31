@@ -38,7 +38,11 @@
                             <div class="row">
 
                                 <div class="col-4">
-                                    <img src="http://via.placeholder.com/350x350" width="100%" />
+                                    @if (\Auth::user()->avatar)
+                                        <img src="{{asset('images/avatars/'.\Auth::user()->avatar)}}" id="avatarPreview" width="100%" />
+                                    @else
+                                        <img src="http://via.placeholder.com/350x350" width="100%" />
+                                    @endif
                                 </div>
                                 <div class="col-8">
                                     <div class="card">

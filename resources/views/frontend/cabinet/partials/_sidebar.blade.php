@@ -18,7 +18,7 @@
             @foreach($topChannels as $item)
                 <div class="top-channel-container">
                     <div class="top-channel-image">
-                        <img src="{{$item->avatar}}" alt="{{$item->description}}" width="100%">
+                        <img src="{{asset($item->avatar)}}" alt="{{$item->description}}" width="100%">
                     </div>
                     <div class="top-channel-content">
                         <div class="top-channel-header">
