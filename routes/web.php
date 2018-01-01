@@ -18,6 +18,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin'], 'namespace'
     // Categories
     Route::get('/categories', 'CategoriesController@index')->name('admin.categories.index');
     Route::post('/categories', 'CategoriesController@store')->name('admin.categories.store');
+    Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('admin.categories.edit');
+    Route::post('/categories/{id}/edit', 'CategoriesController@update')->name('admin.categories.update');
     Route::get('/categories/create', 'CategoriesController@create')->name('admin.categories.create');
 
     // Orders
@@ -40,6 +42,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/channels', 'ChannelsController@index')->name('frontend.channels');
     Route::get('/channels/{slug}', 'ChannelsController@view')->name('frontend.channel');
     //Route::post('/add-chanel', 'IndexController@chanelStore')->name('frontend.store-chanel');
+
+    Route::get('/categories', 'CategoriesController@index')->name('frontend.categories');
+    Route::get('/category/{slug}', 'CategoriesController@show')->name('frontend.category');
 
     // Feedback
     Route::get('/feedback', 'FeedbackController@index')->name('frontend.feedback');

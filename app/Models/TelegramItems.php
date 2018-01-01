@@ -61,6 +61,11 @@ class TelegramItems extends Model
         return null;
     }
 
+    public function scopeByCategory ($query, $id)
+    {
+        return $query->where('category_id', $id);
+    }
+
     public function scopeTop ($query)
     {
         return $query->whereNotNull('top');

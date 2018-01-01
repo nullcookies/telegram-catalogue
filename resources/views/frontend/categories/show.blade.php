@@ -1,12 +1,11 @@
 @extends('frontend.layouts.layout')
 
 @section('content')
-
 <section class="chanels">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Каналы телеграмм</h2>
+                <h2>Категория - {{$category->title}}</h2>
             </div>
         </div>
 

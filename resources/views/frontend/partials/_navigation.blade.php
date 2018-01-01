@@ -29,7 +29,26 @@
             <br>
             <div class="row">
                 <div class="col-3">
-                    <a href="#" class="categories-button">Категории</a>
+                    <div class="categories-dropdown">
+                        <a href="#" class="categories-button">Категории</a>
+                        <div class="dropdown-content">
+                            <div class="row">
+                                <div class="col-4">
+                                    @foreach($categories as $item)
+
+                                        @if($loop->iteration % 8 == 0 )
+                                            </div>
+                                            <div class="col-4">
+                                        @endif
+                                        <a href="{{route('frontend.category', $item->slug)}}">{{$item->title}}</a>
+
+                                    @endforeach
+                                 </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
                 <div class="col-6">
                     <ul class="index-filters">

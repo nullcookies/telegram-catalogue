@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\StoreCategory;
+use Intervention\Image\Exception\NotFoundException;
 
 class CategoriesController extends Controller
 {
@@ -20,6 +21,17 @@ class CategoriesController extends Controller
     {
         return view('admin.categories.create');
     }
+
+    public function edit ($id)
+    {
+        try {
+            $category = Categories::findOrFail($id);
+            return view('admin.categories.edit', compact('category'));
+        } catch (NotFoundException $ex) {
+            return redirect()->back();
+        }
+
+}
 
     public function store (StoreCategory $request)
     {
@@ -38,7 +50,17 @@ class CategoriesController extends Controller
 
     public function update (Request $request, $id)
     {
+        try {
+            $category = Categories::findOrFail($id);
+            $category->title = $request->title;
+            $category->status = $request->status;
+            $category->update();
 
+            return redirect()->route('admin.categories.index');
+
+        } catch (NotFoundException $ex) {
+            return redirect()->back();
+        }
     }
 
     public function delete ($id)
