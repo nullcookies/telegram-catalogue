@@ -36,6 +36,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $channels->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>

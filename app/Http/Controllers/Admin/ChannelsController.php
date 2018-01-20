@@ -12,7 +12,7 @@ class ChannelsController extends Controller
 {
     public function index ()
     {
-        $channels = TelegramItems::all();
+        $channels = TelegramItems::orderBy('id', 'DESC')->paginate(10);
 
         return view('admin.channels.index', compact('channels'));
     }
