@@ -29,7 +29,7 @@
                             <td>{{$channel->views}}</td>
                             <td>{{$channel->forwards}}</td>
                             <td>
-
+                                <a href="{{route('admin.channels.edit', $channel->id)}}">Edit</a>
 
                             </td>
                         </tr>

@@ -37,7 +37,7 @@ class CabinetController extends Controller
     public function add ()
     {
         $types = TelegramItems::types();
-        $categories = Categories::all();
+        $categories = Categories::active()->get();
 
         return view('frontend.cabinet.add', compact('types', 'categories'));
     }
